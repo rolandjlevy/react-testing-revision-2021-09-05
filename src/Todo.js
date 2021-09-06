@@ -1,11 +1,16 @@
 import React from 'react';
 
-const Todo = ({ todo, id, remove }) => {
+const Todo = ({ description, id, remove }) => {
   const handleClick = () => {
     remove(id);
   }
   return (
-    <p id={id}>{' '}{todo}{' '}<button onClick={handleClick} class="remove">&times;</button></p>
+    <li className="todo" id={id}>
+      <span className="description">{description}</span>
+      <span onClick={handleClick} className="remove">
+        <span>&times;</span>
+      </span>
+    </li>
   )
 }
 

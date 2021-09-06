@@ -1,9 +1,16 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('to do app', () => {
+  test('renders page elemets', () => {
+    render(<App />);
+    const header = screen.getByRole('heading', {name: 'Todo app'});
+    expect(header).toBeInTheDocument();
+    const input = screen.getByPlaceholderText('Description...');
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveValue('');
+    const button = screen.getByRole('button', {name: 'Add'});
+    expect(button).toBeInTheDocument();
+  });
 });

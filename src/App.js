@@ -1,40 +1,65 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Todo from './Todo';
 
 function App() {
-  const [counter, incCounter] = useState(0);
   const [todo, setTodo] = useState('');
-  const [todos, updageTodos] = useState([]);
+  const [todos, updateTodos] = useState([]);
 
   const handleChange = (e) => {
     setTodo(e.target.value);
   }
-  const handleClick = () => {
-    incCounter(counter + 1);
-    const newTodo = {
-      todo,
-      id: counter
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      add(e);
     }
-    updageTodos([...todos, newTodo]);
   }
+
+  const add = (e) => {
+    const newTodo = { todo, id: uuidv4() };
+    updateTodos([...todos, newTodo]);
+    setTodo('');
+    e.target.focus();
+  }
+
   const remove = (id) => {
-    const newTodos = todos.filter(item => item.id !== id);
-    updageTodos([...newTodos]);
+    const filteredTodos = todos.filter(item => item.id !== id);
+    updateTodos([...filteredTodos]);
   }
+
   return (
     <div className="App">
       <h3>Todo app</h3>
       <input 
         type="text" 
         value={todo} 
-        placeholder="topic"
         onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        placeholder="Description..."
       />
-      <button onClick={handleClick} class="add" disabled={!todo.length} >Add</button>
+      <button 
+        onClick={(e) => add(e)} 
+        className="add" 
+        disabled={!todo.length}
+      >
+        Add
+      </button>
       
-      {todos.length ? todos.map(item => {
-        return <Todo todo={item.todo} id={item.id} remove={() => remove(item.id)} key={item.id} />
-      }) : ''}
+      {todos.length ? 
+        (<ul className="todos"> 
+          {(todos.map(item => (
+            <Todo 
+              description={item.todo} 
+              id={item.id} 
+              remove={() => remove(item.id)} 
+              key={item.id} 
+            />
+            ))
+          )}
+        </ul>) : <p>No todos</p>
+      }
       
     </div>
   );
