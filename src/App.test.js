@@ -4,9 +4,9 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 describe('to do app', () => {
-  test('renders page elemets', () => {
+  test('Render elements on the page', () => {
     render(<App />);
-    const header = screen.getByRole('heading', {name: 'Todo app'});
+    const header = screen.getByRole('heading', {name: 'List maker'});
     expect(header).toBeInTheDocument();
     const input = screen.getByPlaceholderText('Description...');
     expect(input).toBeInTheDocument();
@@ -19,12 +19,24 @@ describe('to do app', () => {
     userEvent.type(input, todoDescription);
     expect(button).not.toBeDisabled();
 
+  });
+  test('Add and then delete a todo from the page', () => {
+    render(<App />);
+    const input = screen.getByPlaceholderText('Description...');
+    const button = screen.getByRole('button', {name: 'Add'});
+
+    const todoDescription = 'Hello, World!';
+    userEvent.type(input, todoDescription);
+    expect(button).not.toBeDisabled();
+
     userEvent.click(button);
-    const todo = screen.getByText(todoDescription);
+    const todo = screen.queryByText(todoDescription);
     expect(todo).toBeInTheDocument();
-    
-    // const removeButton = screen.getByLabelText('remove-btn');
-    // const removeButton = screen.getByText( { 'aria-remove': 2 }));
-    // expect(removeButton).toBeInTheDocument();
+    const removeButton = screen.getByLabelText('remove-btn');
+    expect(removeButton).toBeInTheDocument();
+
+    userEvent.click(removeButton);
+    expect(todo).not.toBeInTheDocument();
+
   });
 });

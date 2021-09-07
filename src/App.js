@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <h3>Todo app</h3>
+      <h3>List maker</h3>
       <input 
         type="text" 
         value={todo} 
@@ -58,7 +58,7 @@ function App() {
             />
             ))
           )}
-        </ul>) : <p>No todos</p>
+        </ul>) : <p>No list items</p>
       }
       
     </div>
