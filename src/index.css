@@ -29,6 +29,9 @@ li.todo {
   border-radius: 5px;
   padding: 5px 10px;
   margin-bottom: 5px;
+  animation: fadeInAnimation ease-in 0.5s;
+  animation-iteration-count: 1; 
+  animation-fill-mode: forwards;
 }
 
 li.todo > .description {
@@ -69,3 +72,12 @@ input, li.todo > .description, button.add  {
 input, button.add {
   padding: 5px 10px;
 }
+
+@keyframes fadeInAnimation { 
+  0% { 
+    opacity: 0; 
+  } 
+  100% { 
+    opacity: 1; 
+  } 
+} 
