@@ -6,7 +6,7 @@ import App from './App';
 describe('List making app', () => {
   it('Render elements on the page', () => {
     render(<App />);
-    const header = screen.getByRole('heading', { name: 'List maker' });
+    const header = screen.getByRole('heading', { name: 'React List Maker' });
     expect(header).toBeInTheDocument();
     
     const input = screen.getByRole('textbox', { name: /Description/i });

@@ -31,7 +31,7 @@ function App() {
 
   return (
     <main className="App">
-      <h3>List maker</h3>
+      <h3>React List Maker</h3>
       
       <input 
         type="text" 
