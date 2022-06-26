@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Todo = ({ description, id, handleRemove }) => (
+const Todo = ({ id, description, handleRemove }) => (
   <li className="todo" id={id}>
     <span className="description">{description}</span>
     <span 

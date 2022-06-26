@@ -32,6 +32,7 @@ function App() {
   return (
     <main className="App">
       <h3>List maker</h3>
+      
       <input 
         type="text" 
         value={todo} 
@@ -40,6 +41,7 @@ function App() {
         onKeyPress={handleKeyPress}
         placeholder="Description..."
       />
+      
       <button 
         onClick={(e) => handleAdd(e)} 
         className="add" 
@@ -53,13 +55,13 @@ function App() {
           {(todos.map(({ id, todo }) => (
             <Todo 
               key={id} 
-              description={todo} 
               id={id} 
+              description={todo} 
               handleRemove={() => handleRemove(id)} 
             />
             ))
           )}
-        </ul>) : <p>No list items</p>
+        </ul>) : <p>No items found</p>
       }
       
     </main>

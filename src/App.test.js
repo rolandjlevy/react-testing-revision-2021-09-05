@@ -22,7 +22,7 @@ describe('List making app', () => {
     expect(button).toBeEnabled();
 
   });
-  it('Add and then delete an item', () => {
+  it('Add and then remove an item', () => {
     render(<App />);
     const input = screen.getByRole('textbox', { name: /Description/i });
     const button = screen.getByRole('button', { name: /Add/i });
