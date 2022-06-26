@@ -13,34 +13,35 @@ function App() {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      add(e);
+      handleAdd(e);
     }
   }
 
-  const add = (e) => {
+  const handleAdd = (e) => {
     const newTodo = { todo, id: uuidv4() };
     updateTodos([...todos, newTodo]);
     setTodo('');
     e.target.focus();
   }
 
-  const remove = (id) => {
+  const handleRemove = (id) => {
     const filteredTodos = todos.filter(item => item.id !== id);
     updateTodos([...filteredTodos]);
   }
 
   return (
-    <div className="App">
+    <main className="App">
       <h3>List maker</h3>
       <input 
         type="text" 
         value={todo} 
+        aria-label="description"
         onChange={handleChange}
         onKeyPress={handleKeyPress}
         placeholder="Description..."
       />
       <button 
-        onClick={(e) => add(e)} 
+        onClick={(e) => handleAdd(e)} 
         className="add" 
         disabled={!todo.length}
       >
@@ -49,19 +50,19 @@ function App() {
       
       {todos.length ? 
         (<ul className="todos"> 
-          {(todos.map(item => (
+          {(todos.map(({ id, todo }) => (
             <Todo 
-              description={item.todo} 
-              id={item.id} 
-              remove={() => remove(item.id)} 
-              key={item.id} 
+              key={id} 
+              description={todo} 
+              id={id} 
+              handleRemove={() => handleRemove(id)} 
             />
             ))
           )}
         </ul>) : <p>No list items</p>
       }
       
-    </div>
+    </main>
   );
 }
 

@@ -5,7 +5,7 @@
 
 body {
   margin: 30px;
-  background: #333;
+  background: #444;
   font-family: 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -23,13 +23,13 @@ ul.todos {
 }
 
 li.todo {
-  background: #ccc;
+  background: #ffea00;
   display: inline-block;
   width: fit-content;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 5px 10px;
-  margin-bottom: 5px;
-  animation: fadeInAnimation ease-in 0.5s;
+  margin-bottom: 10px;
+  animation: fadeInAnimation ease-in 0.25s;
   animation-iteration-count: 1; 
   animation-fill-mode: forwards;
 }
@@ -44,9 +44,9 @@ input, li.todo > .description, button.add  {
 
 .remove {
   padding: 2px;
-  background: #666;
+  background: #94880a;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
   width: 16px;
   height: 16px;
   display: inline-flex;
